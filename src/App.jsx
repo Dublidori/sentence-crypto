@@ -1,6 +1,11 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+
+import Home from './routes/Home'
+import Pricing from './routes/Pricing'
+import Training from './routes/Training';
+import Contact from './routes/Contact';
+import './index.css'
 
 import { defaultWagmiConfig } from '@web3modal/wagmi/react/config'
 import {
@@ -56,19 +61,12 @@ function App() {
     return (
         <WagmiProvider config={wagmiConfig}>
             <QueryClientProvider client={queryClient}>
-                <w3m-button />
-                <w3m-network-button />
-                <w3m-connect-button />
-                <w3m-account-button />
-
-                <button onClick={() => modal.open()}>Connect Wallet</button>
-                <button onClick={() => modal.open({ view: 'Networks' })}>Choose Network</button>
-                <button onClick={() => setThemeMode(themeMode === 'dark' ? 'light' : 'dark')}>
-                    Toggle Theme Mode
-                </button>
-                <pre>{JSON.stringify(state, null, 2)}</pre>
-                <pre>{JSON.stringify({ themeMode, themeVariables }, null, 2)}</pre>
-                <pre>{JSON.stringify(events, null, 2)}</pre>
+                <Routes>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/pricing' element={<Pricing />} />
+                    <Route path='/training' element={<Training />} />
+                    <Route path='/contact' element={<Contact />} />
+                </Routes>
             </QueryClientProvider>
         </WagmiProvider>
     )
