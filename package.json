@@ -1,7 +1,7 @@
 {
   "name": "sentence-crypto",
   "private": true,
-  "homepage": "https://dublidori.github.io/sentence-crypto/", 
+  "homepage": "https://dublidori.github.io/sentence-crypto", 
   "version": "0.1.0",
   "type": "module",
   "scripts": {
