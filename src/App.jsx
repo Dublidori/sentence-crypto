@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import Home from './routes/Home'
 import Pricing from './routes/Pricing'
 import Training from './routes/Training';
-import Contact from './routes/Contact';
+import About from './routes/About';
 import './index.css'
 
 import { defaultWagmiConfig } from '@web3modal/wagmi/react/config'
@@ -44,10 +44,10 @@ const wagmiConfig = defaultWagmiConfig({
 createWeb3Modal({
     wagmiConfig,
     projectId,
-    themeMode: 'light',
+    themeMode: 'dark',
     themeVariables: {
-        '--w3m-color-mix': '#00DCFF',
-        '--w3m-color-mix-strength': 20
+        '--w3m-color-mix': '#392467',
+        '--w3m-color-mix-strength': 30
     }
 })
 
@@ -65,7 +65,7 @@ function App() {
                     <Route path='/' element={<Home />} />
                     <Route path='/pricing' element={<Pricing />} />
                     <Route path='/training' element={<Training />} />
-                    <Route path='/contact' element={<Contact />} />
+                    <Route path='/about' element={<About />} />
                 </Routes>
             </QueryClientProvider>
         </WagmiProvider>

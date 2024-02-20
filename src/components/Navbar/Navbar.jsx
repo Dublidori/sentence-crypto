@@ -20,22 +20,13 @@ const Navbar = () => {
 
     return (
         <div className={color ? 'header header-bg' : 'header'}>
-            <Link to='/'><h1>GLX TRVL</h1></Link>
+            <Link to='/'><h1>Bitphrase</h1></Link>
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
                 <li>
-                    <Link to='/'>Home</Link>
-                </li>
-                <li>
-                    <Link to='/pricing'>Pricing</Link>
-                </li>
-                <li>
-                    <Link to='/training'>Training</Link>
-                </li>
-                <li>
-                    <Link to='/contact'>Contact</Link>
-                </li>
-                <li>
                     <w3m-button />
+                </li>
+                <li style={{ display: 'flex', alignItems: 'center' }}>
+                    <Link to='/about'>About</Link>
                 </li>
             </ul>
             <div className='hamburger' onClick={handleClick}>
