@@ -1,6 +1,6 @@
 {
   "name": "sentence-crypto",
-  "private": true,
+  "private": false,
   "homepage": "https://dublidori.github.io/sentence-crypto", 
   "version": "0.1.0",
   "type": "module",
