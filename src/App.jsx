@@ -51,6 +51,10 @@ createWeb3Modal({
     }
 })
 
+// Added this for github pages setup ( Still need better config with HashRouter to work -> https://reactrouter.com/en/main/router-components/hash-router)
+const isGithubPages = window.location.hostname === 'dublidori.github.io';
+const basePath = isGithubPages ? '/sentence-crypto/' : '/';
+
 function App() {
     // 4. Use modal hook
     const modal = useWeb3Modal()
@@ -62,10 +66,10 @@ function App() {
         <WagmiProvider config={wagmiConfig}>
             <QueryClientProvider client={queryClient}>
                 <Routes>
-                    <Route path='/' element={<Home />} />
-                    <Route path='/pricing' element={<Pricing />} />
-                    <Route path='/training' element={<Training />} />
-                    <Route path='/about' element={<About />} />
+                    <Route path={`${basePath}/`} element={<Home />} />
+                    <Route path={`${basePath}/pricing`} element={<Pricing />} />
+                    <Route path={`${basePath}/training`} element={<Training />} />
+                    <Route path={`${basePath}/about`} element={<About />} />
                 </Routes>
             </QueryClientProvider>
         </WagmiProvider>
