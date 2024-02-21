@@ -5,5 +5,6 @@ import viteCompression from 'vite-plugin-compression';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), viteCompression()],
-  base: '/sentence-crypto/'
+  // Config for github pages
+  // base: '/sentence-crypto/'
 })
