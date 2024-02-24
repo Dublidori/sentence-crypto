@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import './SentenceStyles.css'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './SentenceStyles.css';
 
 import { useWeb3Provider } from '../../providers/web3.js'
 
@@ -10,6 +10,8 @@ const Sentence = () => {
 
     const { getAccountStatus, handlePayment } = useWeb3Provider();
     const HARDCODED_SENTENCE = 'Whosyourdaddy testing the size like a boss more size more size more size i think with this is ok';
+
+    const [sentence, setSentence] = useState(HARDCODED_SENTENCE);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [sentenceInput, setSentenceInput] = useState('');
@@ -31,7 +33,7 @@ const Sentence = () => {
             </video>
             <div className='content'>
                 <div className="transparent-card">
-                    <h1>{HARDCODED_SENTENCE}</h1>
+                    <h1>{sentence}</h1>
                     <button onClick={openCryptoModal} className="crypto-pay-btn">Become the boss</button>
                 </div>
             </div>
