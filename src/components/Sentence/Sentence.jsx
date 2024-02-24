@@ -2,9 +2,13 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './SentenceStyles.css'
 
+import { useWeb3Provider } from '../../providers/web3.js'
+
 import spaceVideo from '../../assets/space.mp4'
 
 const Sentence = () => {
+
+    const { getAccountStatus, handlePayment } = useWeb3Provider();
     const HARDCODED_SENTENCE = 'Whosyourdaddy testing the size like a boss more size more size more size i think with this is ok';
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -13,6 +17,12 @@ const Sentence = () => {
 
     const openCryptoModal = () => setIsModalOpen(true);
     const closeCryptoModal = () => setIsModalOpen(false);
+
+    const handleButtonPayment = () => {
+        console.log(cryptoAmount);
+        console.log(sentenceInput);
+        handlePayment(cryptoAmount, sentenceInput);
+    }
 
     return (
         <div className='hero'>
@@ -53,7 +63,7 @@ const Sentence = () => {
                                 className="modal-input"
                             />
                         </div>
-                        <button className="pay-btn">Proceed with MetaMask</button>
+                        <button onClick={handleButtonPayment} className="pay-btn">Proceed with MetaMask</button>
                     </div>
                 </div>
             )}
