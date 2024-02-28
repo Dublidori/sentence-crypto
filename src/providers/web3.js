@@ -1,4 +1,5 @@
-import { useAccount, useWriteContract } from 'wagmi';
+import { useAccount, useWriteContract, useSimulateContract } from 'wagmi';
+import { writeContract } from '@wagmi/core'
 import { parseEther } from 'viem'
 import BitphraseABI from './BitphraseABI.json'; // Adjust the path as needed
 
@@ -23,7 +24,7 @@ export const useWeb3Provider = () => {
         }
 
         try {
-            writeContract({
+            useSimulateContract({
                 addressOrName: contractAddress,
                 contractInterface: BitphraseABI,
                 functionName: 'bid',

@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './SentenceStyles.css';
-
+import { useAccount, useWriteContract, useSimulateContract, useConnect } from 'wagmi';
 import { useWeb3Provider } from '../../providers/web3.js'
 
 import spaceVideo from '../../assets/space.mp4'
+import BitphraseABI from './../../providers/BitphraseABI.json'; // Adjust the path as needed
+import { parseEther } from 'viem'
+
+import { wagmiConfig } from '../../config/wagmiConfig.js';
+
+const contractAddress = '0x85a2b7609Fc92181a2A5fb565D2895B5a1D7835C'; // Replace with your smart contract's address
 
 const Sentence = () => {
+    const { writeContract } = useWriteContract();
+    const { isConnected } = useAccount();
 
+    console.log(isConnected);
+    
     const { getAccountStatus, handlePayment } = useWeb3Provider();
     const HARDCODED_SENTENCE = 'Whosyourdaddy testing the size like a boss more size more size more size i think with this is ok';
 
@@ -20,10 +30,40 @@ const Sentence = () => {
     const openCryptoModal = () => setIsModalOpen(true);
     const closeCryptoModal = () => setIsModalOpen(false);
 
+    const handlePaymentv2 = async (amount, quote) => {
+        console.log('here')
+        // if (!address) {
+        //     throw new Error('Please connect to MetaMask.');
+        // }
+
+        try {
+            writeContract( wagmiConfig, {
+                addressOrName: contractAddress,
+                contractInterface: BitphraseABI,
+                functionName: 'bid',
+                args: [
+                    quote
+                ],
+                value: parseEther(amount)
+            })
+
+            // const transaction = await contract.bid(quote, {
+            //     value: ethers.utils.parseEther(bid),
+            // });
+
+            // await transaction.wait();
+            // console.log('Transaction successful:', transaction);
+            return true;
+        } catch (error) {
+            console.error('Transaction failed:', error);
+            throw error;
+        }
+    };
+
     const handleButtonPayment = () => {
         console.log(cryptoAmount);
         console.log(sentenceInput);
-        handlePayment(cryptoAmount, sentenceInput);
+        handlePaymentv2(cryptoAmount, sentenceInput);
     }
 
     return (

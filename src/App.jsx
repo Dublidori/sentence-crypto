@@ -14,7 +14,6 @@ import './index.css';
 // import { ConnectProvider } from './providers/ConnectProvider'; 
 
 import { WalletConnectProvider} from './providers/WalletConnectProvider';
-
 // const queryClient = new QueryClient();
 
 // Added this for github pages setup ( Still need better config with HashRouter to work -> https://reactrouter.com/en/main/router-components/hash-router)

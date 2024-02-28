@@ -10,6 +10,7 @@ export const wagmiConfig = createConfig({
     walletConnect({ projectId }),
     injected({ target: 'metaMask' }), // This is important for metamask behaviors. Font: Wagmi Docs recent version
   ],
+  ssr: true,
   transports: {
     [mainnet.id]: http(),
     [sepolia.id]: http(),
