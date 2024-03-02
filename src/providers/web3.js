@@ -1,4 +1,4 @@
-import { useAccount, useWriteContract, useSimulateContract } from 'wagmi';
+import { useAccount, useWriteContract, useSimulateContract, useSendTransaction } from 'wagmi';
 import { writeContract } from '@wagmi/core'
 import { parseEther } from 'viem'
 import BitphraseABI from './BitphraseABI.json'; // Adjust the path as needed
@@ -7,6 +7,8 @@ const contractAddress = '0x85a2b7609Fc92181a2A5fb565D2895B5a1D7835C'; // Replace
 
 export const useWeb3Provider = () => {
     const { writeContract } = useWriteContract()
+    const { data: hash, sendTransaction } = useSendTransaction() 
+
     const { address } = useAccount();
 
     const getAccountStatus = async () => {
@@ -23,28 +25,31 @@ export const useWeb3Provider = () => {
             throw new Error('Please connect to MetaMask.');
         }
 
-        try {
-            useSimulateContract({
-                addressOrName: contractAddress,
-                contractInterface: BitphraseABI,
-                functionName: 'bid',
-                args: [
-                    quote
-                ],
-                value: parseEther(amount)
-            })
+        // Pagamento primeiro
+        sendTransaction({ contractAddress, value: parseEther(amount) })
 
-            // const transaction = await contract.bid(quote, {
-            //     value: ethers.utils.parseEther(bid),
-            // });
+        // try {
+        //     useSimulateContract({
+        //         addressOrName: contractAddress,
+        //         contractInterface: BitphraseABI,
+        //         functionName: 'bid',
+        //         args: [
+        //             quote
+        //         ],
+        //         value: parseEther(amount)
+        //     })
 
-            // await transaction.wait();
-            // console.log('Transaction successful:', transaction);
-            return true;
-        } catch (error) {
-            console.error('Transaction failed:', error);
-            throw error;
-        }
+        //     // const transaction = await contract.bid(quote, {
+        //     //     value: ethers.utils.parseEther(bid),
+        //     // });
+
+        //     // await transaction.wait();
+        //     // console.log('Transaction successful:', transaction);
+        //     return true;
+        // } catch (error) {
+        //     console.error('Transaction failed:', error);
+        //     throw error;
+        // }
     };
 
     return {

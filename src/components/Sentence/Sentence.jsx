@@ -30,40 +30,10 @@ const Sentence = () => {
     const openCryptoModal = () => setIsModalOpen(true);
     const closeCryptoModal = () => setIsModalOpen(false);
 
-    const handlePaymentv2 = async (amount, quote) => {
-        console.log('here')
-        // if (!address) {
-        //     throw new Error('Please connect to MetaMask.');
-        // }
-
-        try {
-            writeContract( wagmiConfig, {
-                addressOrName: contractAddress,
-                contractInterface: BitphraseABI,
-                functionName: 'bid',
-                args: [
-                    quote
-                ],
-                value: parseEther(amount)
-            })
-
-            // const transaction = await contract.bid(quote, {
-            //     value: ethers.utils.parseEther(bid),
-            // });
-
-            // await transaction.wait();
-            // console.log('Transaction successful:', transaction);
-            return true;
-        } catch (error) {
-            console.error('Transaction failed:', error);
-            throw error;
-        }
-    };
-
     const handleButtonPayment = () => {
         console.log(cryptoAmount);
         console.log(sentenceInput);
-        handlePaymentv2(cryptoAmount, sentenceInput);
+        handlePayment(cryptoAmount, sentenceInput);
     }
 
     return (
