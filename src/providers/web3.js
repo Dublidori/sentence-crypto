@@ -3,7 +3,7 @@ import { writeContract } from '@wagmi/core'
 import { parseEther } from 'viem'
 import BitphraseABI from './BitphraseABI.json'; // Adjust the path as needed
 
-const contractAddress = '0x85a2b7609Fc92181a2A5fb565D2895B5a1D7835C'; // Replace with your smart contract's address
+const to = '0x85a2b7609Fc92181a2A5fb565D2895B5a1D7835C'; // Replace with your smart contract's address
 
 export const useWeb3Provider = () => {
     const { writeContract } = useWriteContract()
@@ -25,8 +25,12 @@ export const useWeb3Provider = () => {
             throw new Error('Please connect to MetaMask.');
         }
 
-        // Pagamento primeiro
-        sendTransaction({ contractAddress, value: parseEther(amount) })
+        // Its been a long run to make this shitty implementation: hours spent on this logic (i think) for now, will update: 7h  
+        // Note #1 the code is a mess at this moment. I believe i found a solution: first we make payment and then we write contract!
+        // Payment first
+        console.log(to),
+        console.log(parseEther(amount));
+        sendTransaction({ to, value: parseEther(amount) })
 
         // try {
         //     useSimulateContract({
