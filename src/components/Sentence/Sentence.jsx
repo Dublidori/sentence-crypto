@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './SentenceStyles.css';
-import { bid } from '../../providers/web3'; // Adjust the path as needed
+import { bid, getHighestBidQuote } from '../../providers/web3'; // Adjust the path as needed
 import spaceVideo from '../../assets/space.mp4'
 
 const Sentence = () => {
@@ -16,6 +16,16 @@ const Sentence = () => {
     const openCryptoModal = () => setIsModalOpen(true);
     const closeCryptoModal = () => setIsModalOpen(false);
 
+    const getQuote = () => {
+        getHighestBidQuote()
+            .then(highestBidQuote => {
+                setSentence(highestBidQuote);
+            })
+            .catch(error => {
+                console.error("Error fetching highest bid quote: ", error);
+            });
+    };
+
     const handleButtonPayment = async () => {
         try {
             await bid(sentenceInput, cryptoAmount);
@@ -28,6 +38,10 @@ const Sentence = () => {
             console.error('Payment failed:', error);
         }
     };
+
+    useEffect(() => {
+        getQuote();
+    }, [sentence])
 
     return (
         <div className='hero'>
