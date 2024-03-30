@@ -1,10 +1,10 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import Home from './routes/Home';
-import Pricing from './routes/Pricing';
-import Training from './routes/Training';
-import About from './routes/About';
+import Home from './screens/Home';
+import Pricing from './screensPricing';
+import Training from './screensTraining';
+import About from './screensAbout';
 import './index.css';
 
 // Added this for github pages setup ( Still need better config with HashRouter to work -> https://reactrouter.com/en/main/router-components/hash-router)
