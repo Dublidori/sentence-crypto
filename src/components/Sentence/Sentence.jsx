@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './SentenceStyles.css';
-import { bid, getHighestBidQuote } from '../../providers/web3'; // Adjust the path as needed
 import spaceVideo from '../../assets/space.mp4'
+import { Web3Context } from '../../providers/Web3Context.jsx';
 
 const Sentence = () => {
+    const { bid, getHighestBidQuote } = useContext(Web3Context);
+
     const HARDCODED_SENTENCE = 'Whosyourdaddy testing the size like a boss more size more size more size i think with this is ok';
 
     const [sentence, setSentence] = useState(HARDCODED_SENTENCE);
