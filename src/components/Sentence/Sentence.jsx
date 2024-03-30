@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './SentenceStyles.css';
-import { ethers } from 'ethers';
-import contractABI from './../../providers/BitphraseABI.json'; // Adjust the path as needed
-
+import { bid } from '../../providers/web3'; // Adjust the path as needed
 import spaceVideo from '../../assets/space.mp4'
-
-const contractAddress = '0x85a2b7609Fc92181a2A5fb565D2895B5a1D7835C'; // Replace with your smart contract's address
 
 const Sentence = () => {
     const HARDCODED_SENTENCE = 'Whosyourdaddy testing the size like a boss more size more size more size i think with this is ok';
@@ -21,44 +17,17 @@ const Sentence = () => {
     const closeCryptoModal = () => setIsModalOpen(false);
 
     const handleButtonPayment = async () => {
-        console.log(cryptoAmount);
-        console.log(sentenceInput);
-        // Ensure MetaMask is available
-        if (typeof window.ethereum === 'undefined') {
-            alert('Please install MetaMask!');
-            return;
-        }
-
         try {
-            // Request account access if needed
-            await window.ethereum.request({ method: 'eth_requestAccounts' });
-
-            // Create an instance of ethers provider
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
-
-            // Create a signer
-            const signer = provider.getSigner();
-
-            // Create a contract instance
-            const contract = new ethers.Contract(contractAddress, contractABI, signer);
-
-            // Convert the ether value to Wei
-            const valueInWei = ethers.utils.parseEther(cryptoAmount);
-
-            // Make the transaction
-            const tx = await contract.bid(sentenceInput, { value: valueInWei });
-            console.log('Transaction sent:', tx.hash);
-
-            // Wait for the transaction to be mined
-            await tx.wait();
-            console.log('Transaction confirmed:', tx.hash);
-
-            // Optionally reset the state
-            setEtherValue('');
+            await bid(sentenceInput, cryptoAmount);
+            // Optionally reset the state or handle success
+            setCryptoAmount('');
+            setSentenceInput('');
+            setIsModalOpen(false);
         } catch (error) {
-            console.error('Transaction failed:', error);
+            // Handle or display the error
+            console.error('Payment failed:', error);
         }
-    }
+    };
 
     return (
         <div className='hero'>
