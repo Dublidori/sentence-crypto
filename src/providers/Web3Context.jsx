@@ -8,6 +8,15 @@ export const Web3Context = createContext();
 
 export const Web3Provider = ({ children }) => {
 
+    const HARDCODED_SENTENCE = 'Whosyourdaddy testing the size like a boss more size more size more size i think with this is ok';
+
+    const [response, setResponse] = useState({
+        error: null,
+        response: ''
+    });
+
+    const [sentence, setSentence] = useState(HARDCODED_SENTENCE);
+
     // Function to initiate payment
     const bid = async (sentenceInput, cryptoAmount) => {
         // Ensure MetaMask is available
@@ -40,9 +49,12 @@ export const Web3Provider = ({ children }) => {
             await tx.wait();
             console.log('Transaction confirmed:', tx.hash);
 
+            setResponse(tx);
+
             return tx;
         } catch (error) {
             console.error('Transaction failed:', error);
+            setResponse(error);
             throw error;
         }
     };
@@ -68,9 +80,13 @@ export const Web3Provider = ({ children }) => {
 
             console.log('Highest Bid Quote:', highestBidQuote);
 
+            setResponse(highestBidQuote);
+            setSentence(highestBidQuote);
+
             return highestBidQuote;
         } catch (error) {
             console.error('Failed to fetch the highest bid quote:', error);
+            setResponse(error);
             throw error;
         }
     };
@@ -79,7 +95,9 @@ export const Web3Provider = ({ children }) => {
         <Web3Context.Provider
             value={{
                 bid,
-                getHighestBidQuote
+                getHighestBidQuote,
+                response,
+                sentence
             }}
         >
             {children}
