@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web3 Encrypted Sentences Leaderboard</title>
+    <style>
+        /* Cyberpunk/Privacy-themed styles with animation */
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            background-color: #0f0f0f;
+            color: #0f0;
+            overflow-x: hidden;
+        }
+        body {
+            background-image: url('encrypted_background.jpg'); /* A placeholder for your background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        .container {
+            width: 90%;
+            margin: auto;
+            padding: 20px;
+            text-shadow: 0 0 5px #0f0;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        input, button {
+            padding: 10px;
+            background: #222;
+            border: 1px solid #0f0;
+            color: #0f0;
+            font-family: 'Courier New', monospace;
+            margin-top: 20px;
+            width: 100%;
+        }
+        button {
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #020;
+        }
+        #leaderboard {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        #leaderboard li {
+            border-bottom: 1px dashed #0f0;
+            padding: 10px 0;
+            font-size: 1.2em;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+        .modal-content {
+            background-color: #111;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #0f0;
+            width: 300px;
+        }
+        .close {
+            color: #0f0;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        /* Keyframe animations for background effects */
+        @keyframes flickerAnimation {
+            0%   { opacity:1; }
+            50%  { opacity:0.8; }
+            100% { opacity:1; }
+        }
+        /* Apply the animation to the background */
+        .animated-background {
+            animation: flickerAnimation 3s infinite;
+        }
+
+        /* New styles for the highest paid sentence */
+        #highest-paid {
+            background: #222;
+            padding: 20px;
+            margin: 20px 0;
+            border: 3px solid #0f0;
+            text-align: center;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="animated-background"></div>
+
+<div class="container">
+    <h1>Web3 Encrypted Sentences Leaderboard</h1>
+
+    <!-- New section for the highest paid sentence -->
+    <section id="highest-paid">
+        <p>"This is the highest paid sentence" - 10 ETH</p>
+    </section>
+    
+    <section id="input-sentence">
+        <input type="text" id="sentence" placeholder="Your encrypted declaration" />
+        <button onclick="openModal()">Submit Sentence</button>
+    </section>
+    
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span onclick="closeModal()" class="close">&times;</span>
+            <p>Secure your place in history. Connect your wallet and make your mark.</p>
+            <button>Connect Wallet</button>
+        </div>
+    </div>
+    
+    <section id="leaderboard-section">
+        <h2>Top Sentences</h2>
+        <ul id="leaderboard">
+            <!-- Placeholder list items for leaderboard entries -->
+            <li>"Cryptography Enthusiast" - 4.2 ETH</li>
+            <!-- More list items -->
+        </ul>
+    </section>
+</div>
+
+<script>
+    function openModal() {
+        document.getElementById('paymentModal').style.display = 'flex';
+    }
+    
+    function closeModal() {
+        document.getElementById('paymentModal').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
