@@ -10,11 +10,16 @@ export const Web3Provider = ({ children }) => {
 
     const HARDCODED_SENTENCE = 'Whosyourdaddy testing the size like a boss more size more size more size i think with this is ok';
 
+    // Trigger Snackbar for handle web3 connections user feedback
+    const [open, setIsOpen] = useState(false);
+
+    // web3 Connections response This will be used for the snackbar
     const [response, setResponse] = useState({
         error: null,
         response: ''
     });
 
+    // State for THE SENTENCE
     const [sentence, setSentence] = useState(HARDCODED_SENTENCE);
 
     // Function to initiate payment
@@ -97,7 +102,9 @@ export const Web3Provider = ({ children }) => {
                 bid,
                 getHighestBidQuote,
                 response,
-                sentence
+                sentence,
+                open,
+                setIsOpen
             }}
         >
             {children}

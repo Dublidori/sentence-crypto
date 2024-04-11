@@ -15,7 +15,7 @@ const modalStyle = {
 };
 
 const Sentence = () => {
-    const { bid, getHighestBidQuote, response, sentence } = useContext(Web3Context);
+    const { bid, getHighestBidQuote, response, sentence, setIsOpen } = useContext(Web3Context);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [sentenceInput, setSentenceInput] = useState('');
     const [cryptoAmount, setCryptoAmount] = useState('');
@@ -30,6 +30,7 @@ const Sentence = () => {
             setCryptoAmount('');
             setSentenceInput('');
             setIsModalOpen(false);
+            setIsOpen(true);
         } catch (error) {
             console.error('Payment failed:', error);
         }
