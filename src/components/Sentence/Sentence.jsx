@@ -3,15 +3,15 @@ import { Typography, Modal, Box, TextField, Button } from '@mui/material';
 import { Web3Context } from '../../providers/Web3Context.jsx';
 
 const modalStyle = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    backgroundColor: '#111',
+    border: '2px solid #0f0',
+    boxShadow: 24,
+    p: 4,
 };
 
 const Sentence = () => {
@@ -36,19 +36,18 @@ const Sentence = () => {
     };
 
     return (
-        <>
-            <Box className="hero">
-                <Box sx={{  display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>
-                    <Box sx={{ backgroundColor: 'rgba(0,0,0,0.5)', p: 4 }}>
-                        <Typography variant="h1" component="h1" color="white" gutterBottom >
-                            {sentence}
-                        </Typography>
-                        <Button variant="outlined" color="primary" onClick={() => setIsModalOpen(true)}>
-                            Become the boss
-                        </Button>
-                    </Box>
+        <React.Fragment>
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', pt: 15 }}>
+                <Box sx={{ backgroundColor: 'rgba(0,0,0,0.5)', p: 4, textAlign: 'center',  }}>
+                    <Typography variant="h1" component="h1" color="white" gutterBottom sx={{ wordWrap: 'break-word', fontSize: 64 }}>
+                        {sentence}
+                    </Typography>
+                    <Button variant="outlined" color="primary" onClick={() => setIsModalOpen(true)}>
+                        Become the boss
+                    </Button>
                 </Box>
             </Box>
+
             <Modal
                 open={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
@@ -83,7 +82,7 @@ const Sentence = () => {
                     </Button>
                 </Box>
             </Modal>
-        </>
+        </React.Fragment>
     );
 };
 

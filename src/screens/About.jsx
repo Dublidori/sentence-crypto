@@ -1,6 +1,5 @@
 import React from 'react';
 import Navbar from '../components/Navbar/Navbar';
-import spaceVideo from './../assets/space.mp4';
 
 const About = () => {
     return (

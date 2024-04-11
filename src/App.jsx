@@ -63,7 +63,14 @@ createWeb3Modal({
     ethersConfig,
     chains: [mainnet, sepolia, bsc, polygon], // Include the chains here
     projectId,
-    enableAnalytics: true
+    enableAnalytics: true,
+    themeMode: 'dark',
+    themeVariables: {
+        '--w3m-font-family': 'Courier New',
+        '--w3m-accent': '#090909',
+        '--w3m-color-mix': '#0f0',
+        '--w3m-color-mix-strength': 15
+    }
 });
 
 // Your existing App component with Web3Provider
