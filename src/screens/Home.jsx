@@ -39,6 +39,12 @@ const Home = () => {
                 <Box sx={{ m: 5 }}>
                     <Leaderboard entries={leaderboardEntries} />
                 </Box>
+            </Box>
+            <Box
+                sx={{
+                    height: "100vh",
+                }}
+            >
                 <About/>
             </Box>
             <Snackbar
