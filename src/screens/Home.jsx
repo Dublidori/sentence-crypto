@@ -3,6 +3,7 @@ import { Container, CssBaseline, ThemeProvider, Box, Alert } from '@mui/material
 import Snackbar from '@mui/material/Snackbar';
 import theme from '../assets/theme/theme.js';
 import Navbar from '../components/Navbar/Navbar';
+import About from './About.jsx';
 import Sentence from '../components/Sentence/Sentence';
 import Leaderboard from '../components/Leaderboard/Leaderboard';
 import matrix from "../assets/matrix.gif";
@@ -25,9 +26,8 @@ const Home = () => {
 
     return (
         <ThemeProvider theme={theme}>
-            <div
-                class="bk_Img"
-                style={{
+            <Box
+                sx={{
                     backgroundImage: "url(" + matrix + ")",
                     backgroundSize: "cover",
                     height: "100vh",
@@ -39,7 +39,8 @@ const Home = () => {
                 <Box sx={{ m: 5 }}>
                     <Leaderboard entries={leaderboardEntries} />
                 </Box>
-            </div>
+                <About/>
+            </Box>
             <Snackbar
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                 open={open}
