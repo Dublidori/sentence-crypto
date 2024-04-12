@@ -10,16 +10,14 @@ import { Web3Context } from '../providers/Web3Context.jsx';
 
 // This data would likely come from state or props in a real application
 const leaderboardEntries = [
-    { text: 'Cryptography Enthusiast', amount: 4.2 },
-    { text: 'Cryptography Enthusiast', amount: 4.2 },
-    { text: 'Cryptography Enthusiast', amount: 4.2 },
-    { text: 'Cryptography Enthusiast', amount: 4.2 },
-    { text: 'Cryptography Enthusiast', amount: 4.2 },
+    { text: 'Joni is the best', amount: 0.14, wallet: '0x85a2b7609Fc92181a2A5fb565D2895B5a1D7835C', date: 1638352800 },
+    { text: 'The quote', amount: 0.01, wallet: '0x85a2b7609Fc92181a2A5fb565D2895B5a1D7835C', date: 1638352800 },
+    { text: 'Testing', amount: 0.002, wallet: '0x85a2b7609Fc92181a2A5fb565D2895B5a1D7835C', date: 1638352800 },
     // ...more entries
 ];
 
 const Home = () => {
-    const { open, setIsOpen, response } = useContext(Web3Context);
+    const { open, setIsOpen, response, setResponse } = useContext(Web3Context);
 
     const handleOpen = () => {
         setIsOpen(!open)
@@ -44,18 +42,20 @@ const Home = () => {
             </div>
             <Snackbar
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                open={true}
+                open={open}
                 severity="success"
                 variant="filled"
                 onClose={handleOpen}
+                sx={{ width: '100%'}}
             >
                 <Alert
                     onClose={handleOpen}
-                    severity="success"
+                    severity={ response.error ? "error" : "success"}
                     variant="filled"
-                    sx={{ width: '100%' }}
+                    sx={{ width: 'auto', maxWidth: '100%' }}
                 >
-                    Transaction Success Your Quote Is In the books of the web3
+                    {response.error && response.error}
+                    {!response.error && response.response}
                 </Alert>
             </Snackbar>
         </ThemeProvider>

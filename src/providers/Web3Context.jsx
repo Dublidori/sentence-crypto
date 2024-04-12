@@ -16,7 +16,8 @@ export const Web3Provider = ({ children }) => {
     // web3 Connections response This will be used for the snackbar
     const [response, setResponse] = useState({
         error: null,
-        response: ''
+        response: '',
+        data: null
     });
 
     // State for THE SENTENCE
@@ -54,12 +55,20 @@ export const Web3Provider = ({ children }) => {
             await tx.wait();
             console.log('Transaction confirmed:', tx.hash);
 
-            setResponse(tx);
+            setResponse(({
+                response: "You've made history in the book of web3 Transaction Confirmed: ",
+                error: null
+            }));
+            setIsOpen(true);
 
             return tx;
         } catch (error) {
             console.error('Transaction failed:', error);
-            setResponse(error);
+            setResponse(prevState => ({
+                ...prevState,
+                error: error.message
+            }));
+            setIsOpen(true);
             throw error;
         }
     };
@@ -85,13 +94,12 @@ export const Web3Provider = ({ children }) => {
 
             console.log('Highest Bid Quote:', highestBidQuote);
 
-            setResponse(highestBidQuote);
+            // setResponse(highestBidQuote);
             setSentence(highestBidQuote);
 
             return highestBidQuote;
         } catch (error) {
             console.error('Failed to fetch the highest bid quote:', error);
-            setResponse(error);
             throw error;
         }
     };
@@ -104,7 +112,8 @@ export const Web3Provider = ({ children }) => {
                 response,
                 sentence,
                 open,
-                setIsOpen
+                setIsOpen,
+                setResponse
             }}
         >
             {children}
