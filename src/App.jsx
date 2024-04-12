@@ -43,6 +43,14 @@ const polygon = {
     rpcUrl: 'https://polygon-rpc.com/'
 };
 
+const solana = {
+    chainId: 99,
+    name: 'Solana',
+    currency: 'SOL',
+    explorerUrl: 'https://explorer.solana.com/',
+    rpcUrl: 'https://www.ankr.com/rpc/solana/'
+};
+
 const metadata = {
     name: 'My Website',
     description: 'My Website description',
@@ -61,7 +69,7 @@ const ethersConfig = defaultConfig({
 
 createWeb3Modal({
     ethersConfig,
-    chains: [mainnet, sepolia, bsc, polygon], // Include the chains here
+    chains: [mainnet, sepolia, bsc, polygon, solana], // Include the chains here
     projectId,
     enableAnalytics: true,
     themeMode: 'dark',

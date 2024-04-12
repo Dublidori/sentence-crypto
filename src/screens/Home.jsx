@@ -52,7 +52,7 @@ const Home = () => {
                     onClose={handleOpen}
                     severity={ response.error ? "error" : "success"}
                     variant="filled"
-                    sx={{ width: 'auto', maxWidth: '100%' }}
+                    sx={{ width: 'auto', maxWidth: '100%', color: 'white', fontWeight: 900 }}
                 >
                     {response.error && response.error}
                     {!response.error && response.response}

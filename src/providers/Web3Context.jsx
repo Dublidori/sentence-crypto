@@ -56,7 +56,7 @@ export const Web3Provider = ({ children }) => {
             console.log('Transaction confirmed:', tx.hash);
 
             setResponse(({
-                response: "You've made history in the book of web3 Transaction Confirmed: ",
+                response: "You've made history in the book of web3 Transaction Confirmed",
                 error: null
             }));
             setIsOpen(true);

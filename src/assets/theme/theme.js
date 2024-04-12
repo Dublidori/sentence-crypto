@@ -30,7 +30,7 @@ const theme = createTheme({
       main: '#2196f3', // Color for informational messages and states
     },
     success: {
-      main: '#4caf50', // Color for success states
+      main: '#0f0', // Color for success states
     },
   },
   typography: {
