@@ -104,6 +104,10 @@ export const Web3Provider = ({ children }) => {
         }
     };
 
+    const getAllBidders = async () => {
+        
+    } 
+
     return (
         <Web3Context.Provider
             value={{

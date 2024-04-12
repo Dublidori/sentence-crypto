@@ -14,7 +14,7 @@ const Leaderboard = ({ entries }) => {
                         <ListItem key={index} sx={{ borderBottom: '1px dashed #0f0', py: 1, color: '#0f0', pt: 3 }}>
                             <Grid item sm={3}  sx={{ justifyContent: 'flex-start', display: 'flex' }}>
                                 <Typography variant="h7" component="h2" align="center" color="primary" gutterBottom>
-                                    {entry.text}
+                                    {entry.quote}
                                 </Typography>
                             </Grid>
                             <Grid item sm={3} sx={{ justifyContent: 'flex-end', display: 'flex' }}>
@@ -24,7 +24,7 @@ const Leaderboard = ({ entries }) => {
                             </Grid>
                             <Grid item sm={6} sx={{ justifyContent: 'flex-end', display: 'flex' }}>
                                 <Typography variant="h7" component="h2" align="center" color="primary" gutterBottom>
-                                    {entry.wallet}
+                                    {entry.bidder}
                                 </Typography>
                             </Grid>
 

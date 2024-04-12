@@ -10,9 +10,9 @@ import { Web3Context } from '../providers/Web3Context.jsx';
 
 // This data would likely come from state or props in a real application
 const leaderboardEntries = [
-    { text: 'Joni is the best', amount: 0.14, wallet: '0x85a2b7609Fc92181a2A5fb565D2895B5a1D7835C', date: 1638352800 },
-    { text: 'The quote', amount: 0.01, wallet: '0x85a2b7609Fc92181a2A5fb565D2895B5a1D7835C', date: 1638352800 },
-    { text: 'Testing', amount: 0.002, wallet: '0x85a2b7609Fc92181a2A5fb565D2895B5a1D7835C', date: 1638352800 },
+    { quote: 'Joni is the best', amount: 0.14, bidder: '0x85a2b7609Fc92181a2A5fb565D2895B5a1D7835C', timestamp: 1638352800 },
+    { quote: 'The quote', amount: 0.01, bidder: '0x85a2b7609Fc92181a2A5fb565D2895B5a1D7835C', timestamp: 1638352800 },
+    { quote: 'Testing', amount: 0.002, bidder: '0x85a2b7609Fc92181a2A5fb565D2895B5a1D7835C', timestamp: 1638352800 },
     // ...more entries
 ];
 
