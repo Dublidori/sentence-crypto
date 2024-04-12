@@ -10,6 +10,9 @@ export const Web3Provider = ({ children }) => {
 
     const HARDCODED_SENTENCE = 'Whosyourdaddy testing the size like a boss more size more size more size i think with this is ok';
 
+    // Leaderboard data
+    const [leaderboardData, setLeaderBoardData] = useState([]);
+
     // Trigger Snackbar for handle web3 connections user feedback
     const [open, setIsOpen] = useState(false);
 
@@ -25,7 +28,7 @@ export const Web3Provider = ({ children }) => {
 
     // Function to initiate payment
     const bid = async (sentenceInput, cryptoAmount) => {
-        // Ensure MetaMask is available
+        // TODO: Build this validation generic
         if (typeof window.ethereum === 'undefined') {
             alert('Please install MetaMask!');
             throw new Error('MetaMask is not installed');
@@ -76,7 +79,7 @@ export const Web3Provider = ({ children }) => {
     // Function to read the highest bid quote
     const getHighestBidQuote = async () => {
         try {
-            // Check for MetaMask; this is still useful for reads to handle any network checks or initializations
+            // TODO: Build this validation generic
             if (typeof window.ethereum === 'undefined') {
                 alert('Please install MetaMask!');
                 throw new Error('MetaMask is not installed');
@@ -105,7 +108,31 @@ export const Web3Provider = ({ children }) => {
     };
 
     const getAllBidders = async () => {
-        
+        try {
+            // Check for MetaMask; this is still useful for reads to handle any network checks or initializations
+            if (typeof window.ethereum === 'undefined') {
+                alert('Please install MetaMask!');
+                throw new Error('MetaMask is not installed');
+            }
+
+            // Initialize ethers provider
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            await provider.send("eth_requestAccounts", []); // Prompts user connection
+
+            // Create a contract instance with just the provider, as we're only reading state
+            const contract = new ethers.Contract(contractAddress, contractABI, provider);
+
+            // Call the highestBidQuote function
+            const leaderboard = await contract.getAllTransactions();
+
+            setLeaderBoardData(leaderboard);
+            console.log('Transactions Fetched: ' + leaderboard);
+
+            return leaderboard;
+        } catch (error) {
+            console.error('Failed to fetch the highest bid quote:', error);
+            throw error;
+        }
     } 
 
     return (
@@ -117,7 +144,8 @@ export const Web3Provider = ({ children }) => {
                 sentence,
                 open,
                 setIsOpen,
-                setResponse
+                setResponse,
+                getAllBidders
             }}
         >
             {children}
