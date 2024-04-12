@@ -45,7 +45,7 @@ const ethersConfig = defaultConfig({
 
 createWeb3Modal({
     ethersConfig,
-    chains: [mainnet, sepolia, bsc, polygon, solana], // Include the chains here
+    chains: [mainnet, sepolia], // Include the chains here
     projectId,
     enableAnalytics: true,
     themeMode: 'dark',
