@@ -27,30 +27,6 @@ const sepolia = {
     rpcUrl: 'https://sepolia.infura.io/v3/'
 };
 
-const bsc = {
-    chainId: 56,
-    name: 'Binance Smart Chain',
-    currency: 'BNB',
-    explorerUrl: 'https://bscscan.com',
-    rpcUrl: 'https://bsc-dataseed.binance.org/'
-};
-
-const polygon = {
-    chainId: 137,
-    name: 'Polygon',
-    currency: 'MATIC',
-    explorerUrl: 'https://polygonscan.com',
-    rpcUrl: 'https://polygon-rpc.com/'
-};
-
-const solana = {
-    chainId: 99,
-    name: 'Solana',
-    currency: 'SOL',
-    explorerUrl: 'https://explorer.solana.com/',
-    rpcUrl: 'https://www.ankr.com/rpc/solana/'
-};
-
 const metadata = {
     name: 'My Website',
     description: 'My Website description',
